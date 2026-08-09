@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Zenora Digital | Websites, AI, Design & Digital Solutions</title>
+<meta name="description" content="Zenora Digital provides website development, app development, AI solutions, graphic design, video editing and social media services for modern businesses.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zenora Digital | Websites, AI, Design & Digital Solutions">
+<meta property="og:description" content="Zenora Digital provides website development, app development, AI solutions, graphic design, video editing and social media services for modern businesses.">
+<meta property="og:site_name" content="Zenora Digital">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --bg:#080b10;
+  --bg-alt:#0c1119;
+  --bg-card:#0e141d;
+  --border:rgba(148,178,204,0.12);
+  --border-hover:rgba(56,220,255,0.45);
+  --cyan:#33d6ff;
+  --cyan-soft:#0ea5c9;
+  --text-1:#eef4f9;
+  --text-2:#93a4b8;
+  --text-3:#5c6b7d;
+  --glow: 0 0 0 1px rgba(56,220,255,0.08), 0 8px 30px rgba(0,0,0,0.45);
+  --radius:16px;
+  --maxw:1180px;
+  --ease:cubic-bezier(.19,1,.22,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text-1);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  overflow-x:hidden;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,h4{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:600;
+  letter-spacing:-0.02em;
+  line-height:1.15;
+}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+section{position:relative;padding:96px 0;}
+@media (max-width:768px){section{padding:64px 0;}}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--cyan);font-weight:600;margin-bottom:14px;
+}
+.eyebrow::before{content:"";width:16px;height:1px;background:var(--cyan);}
+.section-head{max-width:640px;margin-bottom:56px;}
+.section-head h2{font-size:clamp(28px,4.2vw,42px);margin-bottom:14px;}
+.section-head p{color:var(--text-2);font-size:16px;}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 28px;border-radius:10px;font-weight:600;font-size:15px;
+  cursor:pointer;border:1px solid transparent;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s;
+  white-space:nowrap;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#33d6ff,#0891b2);
+  color:#04121a;
+  box-shadow:0 0 0 1px rgba(56,220,255,0.3), 0 10px 30px -8px rgba(51,214,255,0.45);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(56,220,255,0.5), 0 14px 34px -6px rgba(51,214,255,0.6);}
+.btn-ghost{
+  background:transparent;border:1px solid var(--border);color:var(--text-1);
+}
+.btn-ghost:hover{border-color:var(--border-hover);background:rgba(56,220,255,0.06);}
+.btn-block{width:100%;}
+
+/* ============ SCROLL REVEAL ============ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.reveal.in{opacity:1;transform:translateY(0);}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1!important;transform:none!important;transition:none!important;}
+  *{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+}
+
+/* ============ NAVBAR ============ */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:18px 0;
+  background:transparent;
+  border-bottom:1px solid transparent;
+  transition:background .35s var(--ease),border-color .35s var(--ease),padding .35s var(--ease),backdrop-filter .35s var(--ease);
+}
+.navbar.scrolled{
+  background:rgba(8,11,16,0.72);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--border);
+  padding:12px 0;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;}
+.logo{
+  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:0.01em;
+  display:flex;align-items:center;gap:9px;
+}
+.logo-mark{
+  width:30px;height:30px;border-radius:8px;flex-shrink:0;
+  background:linear-gradient(135deg,#33d6ff,#0b4a5c);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 16px rgba(51,214,255,0.4);
+}
+.logo-mark svg{width:16px;height:16px;}
+.nav-links{display:flex;align-items:center;gap:36px;}
+.nav-links a{
+  font-size:14.5px;font-weight:500;color:var(--text-2);
+  position:relative;padding:4px 0;transition:color .2s;
+}
+.nav-links a::after{
+  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--cyan);transition:width .3s var(--ease);
+}
+.nav-links a:hover{color:var(--text-1);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{margin-left:8px;}
+.nav-cta .btn{padding:10px 20px;font-size:14px;}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  width:38px;height:38px;align-items:center;justify-content:center;
+  border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.02);
+}
+.hamburger span{width:18px;height:1.5px;background:var(--text-1);transition:transform .3s var(--ease),opacity .3s var(--ease);}
+.hamburger.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+
+.mobile-menu{
+  position:fixed;top:0;right:0;height:100vh;width:78%;max-width:320px;
+  background:#0a0f16;border-left:1px solid var(--border);
+  z-index:1100;padding:100px 28px 40px;
+  transform:translateX(100%);transition:transform .4s var(--ease);
+  display:flex;flex-direction:column;gap:6px;
+}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu a{
+  font-size:19px;font-weight:600;font-family:'Space Grotesk',sans-serif;
+  padding:16px 4px;border-bottom:1px solid var(--border);color:var(--text-1);
+}
+.mobile-menu .btn{margin-top:24px;}
+.menu-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(2px);
+  z-index:1050;opacity:0;pointer-events:none;transition:opacity .35s var(--ease);
+}
+.menu-overlay.open{opacity:1;pointer-events:auto;}
+@media (max-width:860px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;padding:150px 0 100px;
+  overflow:hidden;
+  min-height:92vh;display:flex;align-items:center;
+}
+.hero::before{
+  content:"";position:absolute;inset:-20% -10%;
+  background:
+    radial-gradient(ellipse 700px 480px at 78% 18%, rgba(51,214,255,0.14), transparent 60%),
+    radial-gradient(ellipse 500px 400px at 10% 80%, rgba(14,116,144,0.12), transparent 60%);
+  animation:driftbg 16s ease-in-out infinite alternate;
+  z-index:0;
+}
+@keyframes driftbg{
+  0%{transform:translate(0,0) scale(1);}
+  100%{transform:translate(-2%,2%) scale(1.05);}
+}
+.hero-grid{
+  position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;
+}
+@media (max-width:960px){.hero-grid{grid-template-columns:1fr;gap:40px;}}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:100px;
+  border:1px solid var(--border);background:rgba(51,214,255,0.05);
+  font-size:12.5px;color:var(--cyan);font-weight:600;letter-spacing:0.04em;margin-bottom:24px;
+}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
+.hero h1{
+  font-size:clamp(34px,5.6vw,64px);
+  margin-bottom:22px;
+}
+.hero h1 .accent{
+  background:linear-gradient(120deg,#33d6ff,#7fe8ff 40%,#33d6ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.sub{
+  font-size:clamp(16px,2vw,18.5px);color:var(--text-2);max-width:520px;margin-bottom:26px;
+}
+.founder-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:10px 16px;border-radius:10px;
+  border:1px solid var(--border);background:rgba(255,255,255,0.015);
+  font-size:14px;color:var(--text-2);margin-bottom:32px;
+  opacity:0;transform:translateY(10px);
+  animation:founderIn 1s var(--ease) 1.1s forwards;
+}
+@media (prefers-reduced-motion:reduce){.founder-tag{opacity:1;transform:none;animation:none;}}
+.founder-tag .name{
+  color:var(--cyan);font-weight:600;
+  text-shadow:0 0 14px rgba(51,214,255,0.35);
+}
+@keyframes founderIn{
+  to{opacity:1;transform:translateY(0);}
+}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+
+.hero-visual{position:relative;height:420px;display:flex;align-items:center;justify-content:center;}
+@media (max-width:960px){.hero-visual{height:280px;order:-1;}}
+.hero-visual svg{width:100%;height:100%;max-width:460px;}
+.orbit-core{filter:drop-shadow(0 0 22px rgba(51,214,255,0.5));}
+.node{animation:pulse 2.6s ease-in-out infinite;}
+.node:nth-child(2){animation-delay:.4s;}
+.node:nth-child(3){animation-delay:.8s;}
+.node:nth-child(4){animation-delay:1.2s;}
+@keyframes pulse{
+  0%,100%{opacity:0.55;}
+  50%{opacity:1;}
+}
+.orbit-ring{animation:spin 30s linear infinite;transform-origin:center;}
+.orbit-ring.rev{animation:spinRev 42s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes spinRev{to{transform:rotate(-360deg);}}
+@media (prefers-reduced-motion:reduce){
+  .orbit-ring,.node,.hero::before{animation:none!important;}
+}
+
+/* ============ HERO ENTRANCE ============ */
+.hero-anim{opacity:0;transform:translateY(18px);animation:heroIn .8s var(--ease) forwards;}
+.hero-anim.d1{animation-delay:.05s;}
+.hero-anim.d2{animation-delay:.2s;}
+.hero-anim.d3{animation-delay:.35s;}
+.hero-anim.d4{animation-delay:.65s;}
+@keyframes heroIn{to{opacity:1;transform:translateY(0);}}
+@media (prefers-reduced-motion:reduce){.hero-anim{opacity:1;transform:none;animation:none;}}
+
+/* ============ TRUST STRIP ============ */
+.trust{padding:44px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.trust-inner{display:flex;flex-direction:column;gap:18px;align-items:center;text-align:center;}
+.trust-words{
+  font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(15px,2.4vw,19px);
+  color:var(--text-1);letter-spacing:0.01em;
+}
+.trust-words span{color:var(--cyan);}
+.trust p{color:var(--text-2);font-size:14.5px;max-width:620px;}
+
+/* ============ SERVICE CARDS ============ */
+.services-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;
+}
+.s-card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:30px 26px;position:relative;overflow:hidden;
+  transition:transform .35s var(--ease),border-color .35s var(--ease),box-shadow .35s var(--ease);
+}
+.s-card::before{
+  content:"";position:absolute;top:-1px;left:-1px;right:-1px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(51,214,255,0.5),transparent);
+  opacity:0;transition:opacity .35s;
+}
+.s-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--border-hover);
+  box-shadow:0 16px 40px -12px rgba(51,214,255,0.18);
+}
+.s-card:hover::before{opacity:1;}
+.s-num{
+  font-family:'Space Grotesk',sans-serif;font-size:13px;color:var(--cyan-soft);font-weight:600;
+  letter-spacing:0.05em;margin-bottom:18px;opacity:0.85;
+}
+.s-icon{
+  width:44px;height:44px;border-radius:11px;margin-bottom:18px;
+  background:rgba(51,214,255,0.08);border:1px solid rgba(51,214,255,0.18);
+  display:flex;align-items:center;justify-content:center;
+}
+.s-icon svg{width:22px;height:22px;stroke:var(--cyan);}
+.s-card h3{font-size:19px;margin-bottom:10px;}
+.s-card p{color:var(--text-2);font-size:14.5px;}
+.s-book-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:18px;padding:0;border:none;background:none;cursor:pointer;
+  font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;color:var(--cyan);
+  transition:gap .25s var(--ease),color .25s;
+}
+.s-book-btn .arrow{transition:transform .25s var(--ease);}
+.s-book-btn:hover{gap:10px;}
+.s-book-btn:hover .arrow{transform:translateX(3px);}
+
+/* ============ BOOKING MODAL ============ */
+.booking-overlay{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(4,6,10,0.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity .3s var(--ease);
+}
+.booking-overlay.open{opacity:1;pointer-events:auto;}
+.booking-box{
+  width:100%;max-width:460px;max-height:88vh;overflow-y:auto;
+  background:var(--bg-card);border:1px solid var(--border-hover);border-radius:18px;
+  padding:32px 26px 28px;position:relative;
+  box-shadow:0 20px 60px -10px rgba(0,0,0,0.6), 0 0 0 1px rgba(51,214,255,0.08);
+  transform:translateY(14px) scale(0.98);transition:transform .35s var(--ease);
+}
+.booking-overlay.open .booking-box{transform:translateY(0) scale(1);}
+.booking-close{
+  position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:9px;
+  background:rgba(255,255,255,0.03);border:1px solid var(--border);color:var(--text-2);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;line-height:1;
+  transition:border-color .2s,color .2s;
+}
+.booking-close:hover{border-color:var(--border-hover);color:var(--text-1);}
+.booking-box h3{font-size:22px;margin-bottom:6px;padding-right:34px;}
+.booking-sub{color:var(--text-2);font-size:14px;margin-bottom:22px;}
+.booking-sub .service-name{color:var(--cyan);font-weight:600;}
+.bfield{margin-bottom:16px;}
+.bfield label{display:block;font-size:13px;color:var(--text-2);margin-bottom:7px;font-weight:500;}
+.bfield input, .bfield select, .bfield textarea{
+  width:100%;padding:12px 14px;border-radius:9px;
+  background:rgba(255,255,255,0.02);border:1px solid var(--border);
+  color:var(--text-1);font-family:'Inter',sans-serif;font-size:14.5px;
+  transition:border-color .2s,background .2s;
+}
+.bfield input:focus, .bfield select:focus, .bfield textarea:focus{
+  outline:none;border-color:var(--border-hover);background:rgba(51,214,255,0.03);
+}
+.bfield textarea{resize:vertical;min-height:80px;}
+.bfield select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2393a4b8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:34px;}
+.booking-honeypot{position:absolute;left:-9999px;opacity:0;pointer-events:none;}
+.booking-status{
+  font-size:13.5px;margin-top:14px;padding:10px 12px;border-radius:8px;display:none;
+}
+.booking-status.show{display:block;}
+.booking-status.ok{background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.25);}
+.booking-status.err{background:rgba(239,68,68,0.1);color:#f87171;border:1px solid rgba(248,113,113,0.25);}
+
+/* ============ WHY US ============ */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;}
+.w-card{
+  padding:28px 24px;border-radius:var(--radius);border:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(255,255,255,0.015),transparent);
+  transition:border-color .3s,transform .3s var(--ease);
+}
+.w-card:hover{border-color:var(--border-hover);transform:translateY(-4px);}
+.w-card h3{font-size:17px;margin-bottom:8px;color:var(--text-1);}
+.w-card p{font-size:14px;color:var(--text-2);}
+.w-mark{width:34px;height:2px;background:var(--cyan);margin-bottom:16px;}
+
+/* ============ PROCESS ============ */
+.process-wrap{position:relative;}
+.process-line{
+  position:absolute;top:22px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--border) 8%,var(--border) 92%,transparent);
+  z-index:0;
+}
+@media (max-width:860px){
+  .process-line{left:22px;top:0;bottom:0;width:1px;height:auto;right:auto;
+  background:linear-gradient(180deg,transparent,var(--border) 8%,var(--border) 92%,transparent);}
+}
+.process-grid{
+  position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+}
+@media (max-width:860px){.process-grid{grid-template-columns:1fr;gap:32px;}}
+.p-step{display:flex;flex-direction:column;gap:14px;}
+@media (max-width:860px){.p-step{flex-direction:row;gap:20px;align-items:flex-start;}}
+.p-dot{
+  width:44px;height:44px;border-radius:50%;background:var(--bg);
+  border:1px solid var(--border-hover);color:var(--cyan);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;
+  box-shadow:0 0 0 5px var(--bg), 0 0 16px rgba(51,214,255,0.25);
+}
+.p-step h3{font-size:17px;margin-bottom:6px;}
+.p-step p{color:var(--text-2);font-size:14px;}
+
+/* ============ ABOUT ============ */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+@media (max-width:860px){.about-wrap{grid-template-columns:1fr;gap:32px;}}
+.about-copy p{color:var(--text-2);font-size:16px;margin-bottom:20px;}
+.about-founder{
+  display:inline-flex;align-items:center;gap:10px;font-size:14.5px;color:var(--text-2);
+  padding-top:6px;border-top:1px solid var(--border);margin-top:4px;
+}
+.about-founder .name{color:var(--cyan);font-weight:600;}
+.about-panel{
+  border-radius:var(--radius);border:1px solid var(--border);
+  background:var(--bg-card);padding:34px;
+  display:grid;grid-template-columns:1fr 1fr;gap:22px;
+}
+.stat h4{font-family:'Space Grotesk',sans-serif;font-size:28px;color:var(--cyan);margin-bottom:4px;}
+.stat p{font-size:13.5px;color:var(--text-2);}
+
+/* ============ CTA ============ */
+.cta-section{padding:0;}
+.cta-box{
+  position:relative;border-radius:24px;overflow:hidden;
+  border:1px solid rgba(51,214,255,0.25);
+  padding:72px 32px;text-align:center;
+  background:radial-gradient(ellipse 600px 300px at 50% 0%, rgba(51,214,255,0.14), transparent 70%), var(--bg-card);
+}
+.cta-box::after{
+  content:"";position:absolute;inset:0;border-radius:24px;
+  box-shadow:0 0 80px 10px rgba(51,214,255,0.10) inset;
+  animation:ctaGlow 3.4s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes ctaGlow{
+  0%,100%{opacity:0.5;}
+  50%{opacity:1;}
+}
+@media (prefers-reduced-motion:reduce){.cta-box::after{animation:none;}}
+.cta-box h2{font-size:clamp(28px,4.5vw,42px);margin-bottom:14px;}
+.cta-box p{color:var(--text-2);margin-bottom:32px;font-size:16.5px;}
+
+/* ============ CONTACT ============ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media (max-width:640px){.contact-grid{grid-template-columns:1fr;}}
+.c-card{
+  padding:32px 26px;border-radius:var(--radius);border:1px solid var(--border);
+  background:var(--bg-card);display:flex;flex-direction:column;gap:16px;
+  transition:border-color .3s,transform .3s var(--ease);
+}
+.c-card:hover{border-color:var(--border-hover);transform:translateY(-4px);}
+.c-icon{
+  width:46px;height:46px;border-radius:12px;background:rgba(51,214,255,0.08);
+  border:1px solid rgba(51,214,255,0.2);display:flex;align-items:center;justify-content:center;
+}
+.c-icon svg{width:22px;height:22px;stroke:var(--cyan);}
+.c-card h3{font-size:18px;}
+.c-card .detail{color:var(--text-2);font-size:15px;word-break:break-word;}
+
+/* ============ FOOTER ============ */
+footer{border-top:1px solid var(--border);padding:56px 0 28px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;margin-bottom:40px;}
+@media (max-width:720px){.footer-grid{grid-template-columns:1fr;gap:28px;}}
+.footer-brand p{color:var(--text-2);font-size:14.5px;margin-top:10px;max-width:280px;}
+.footer-col h4{font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-3);margin-bottom:14px;}
+.footer-col p, .footer-col a{font-size:14.5px;color:var(--text-2);display:block;margin-bottom:8px;}
+.footer-bottom{
+  border-top:1px solid var(--border);padding-top:22px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font-size:13px;color:var(--text-3);
+}
+
+/* focus visibility */
+a:focus-visible, button:focus-visible, .hamburger:focus-visible{
+  outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 4L20 4L4 20L20 20" stroke="#04121a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      ZENORA <span style="color:var(--cyan)">DIGITAL</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#why-us">Why Us</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <span class="nav-cta"><a href="#contact" class="btn btn-primary">Start a Project</a></span>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+  <a href="#home">Home</a>
+  <a href="#services">Services</a>
+  <a href="#why-us">Why Us</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-primary btn-block">Start a Project</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-tag hero-anim d1"><span class="dot"></span> Full-Service Digital Agency</div>
+      <h1 class="hero-anim d1">We Turn Ideas Into <span class="accent">Digital Reality.</span></h1>
+      <p class="sub hero-anim d2">Websites, Apps, AI, Design, Marketing and Digital Solutions — Everything Your Business Needs Under One Roof.</p>
+      <div class="founder-tag">Founded by <span class="name">Aadeep Chauhan</span></div>
+      <div class="hero-ctas hero-anim d3">
+        <a href="#services" class="btn btn-primary">Explore Services</a>
+        <a href="#contact" class="btn btn-ghost">Contact Us</a>
+      </div>
+    </div>
+    <div class="hero-visual hero-anim d4">
+      <svg viewBox="0 0 400 400" fill="none">
+        <circle class="orbit-ring" cx="200" cy="200" r="150" stroke="rgba(51,214,255,0.15)" stroke-dasharray="2 8"/>
+        <circle class="orbit-ring rev" cx="200" cy="200" r="110" stroke="rgba(51,214,255,0.22)" stroke-dasharray="1 6"/>
+        <g class="orbit-core">
+          <circle cx="200" cy="200" r="46" fill="rgba(51,214,255,0.08)" stroke="rgba(51,214,255,0.5)"/>
+          <path d="M182 200L196 214L222 186" stroke="#33d6ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <line x1="200" y1="200" x2="200" y2="80" stroke="rgba(51,214,255,0.25)"/>
+        <line x1="200" y1="200" x2="320" y2="240" stroke="rgba(51,214,255,0.2)"/>
+        <line x1="200" y1="200" x2="95" y2="270" stroke="rgba(51,214,255,0.2)"/>
+        <line x1="200" y1="200" x2="300" y2="120" stroke="rgba(51,214,255,0.15)"/>
+        <circle class="node" cx="200" cy="80" r="7" fill="#33d6ff"/>
+        <circle class="node" cx="320" cy="240" r="6" fill="#33d6ff"/>
+        <circle class="node" cx="95" cy="270" r="6" fill="#33d6ff"/>
+        <circle class="node" cx="300" cy="120" r="5" fill="#33d6ff"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="container trust-inner reveal">
+    <div class="trust-words"><span>Creative</span> • <span>Reliable</span> • <span>Digital</span> • <span>Growth-Focused</span></div>
+    <p>Zenora Digital combines creativity, technology and strategy to help businesses build a stronger presence online — and grow because of it.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">What We Do</div>
+      <h2>Our Digital Services</h2>
+      <p>Seven core disciplines, one accountable team — everything your brand needs to look and perform like it means business.</p>
+    </div>
+    <div class="services-grid" id="servicesGrid">
+      <!-- cards injected below statically for SEO -->
+      <div class="s-card reveal">
+        <div class="s-num">01</div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><circle cx="6.5" cy="6.5" r="0.6"/></svg></div>
+        <h3>Website Development</h3>
+        <p>Build fast, responsive and modern websites that represent your brand professionally.</p>
+        <button type="button" class="s-book-btn" onclick="openBookingModal('Website Development')">Book This Service <span class="arrow">→</span></button>
+      </div>
+      <div class="s-card reveal">
+        <div class="s-num">02</div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg></div>
+        <h3>Graphic Design</h3>
+        <p>Create eye-catching graphics, posters, social media creatives and brand visuals.</p>
+        <button type="button" class="s-book-btn" onclick="openBookingModal('Graphic Design')">Book This Service <span class="arrow">→</span></button>
+      </div>
+      <div class="s-card reveal">
+        <div class="s-num">03</div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.4"/><path d="M11 18.4h2"/></svg></div>
+        <h3>App Development</h3>
+        <p>Build modern mobile applications designed around business needs.</p>
+        <button type="button" class="s-book-btn" onclick="openBookingModal('App Development')">Book This Service <span class="arrow">→</span></button>
+      </div>
+      <div class="s-card reveal">
+        <div class="s-num">04</div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M9 9h.01M15 9h.01M8 15c1.2 1.2 2.6 1.8 4 1.8s2.8-.6 4-1.8"/></svg></div>
+        <h3>AI Agents & Automation</h3>
+        <p>Create AI agents and automation systems that reduce repetitive work and improve productivity.</p>
+        <button type="button" class="s-book-btn" onclick="openBookingModal('AI Agents &amp; Automation')">Book This Service <span class="arrow">→</span></button>
+      </div>
+      <div class="s-card reveal">
+        <div class="s-num">05</div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="12" r="3"/><circle cx="17" cy="5" r="3"/><circle cx="17" cy="19" r="3"/><path d="M9.6 10.5L14.4 6.5M9.6 13.5L14.4 17.5"/></svg></div>
+        <h3>Social Media Handling</h3>
+        <p>Manage content, posting, engagement and social media growth for brands.</p>
+        <button type="button" class="s-book-btn" onclick="openBookingModal('Social Media Handling')">Book This Service <span class="arrow">→</span></button>
+      </div>
+      <div class="s-card reveal">
+        <div class="s-num">06</div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="12" rx="2"/><path d="M15.5 10l6-3.5v11l-6-3.5"/></svg></div>
+        <h3>Video Editing</h3>
+        <p>Create professional and engaging videos for social media, advertising and branding.</p>
+        <button type="button" class="s-book-btn" onclick="openBookingModal('Video Editing')">Book This Service <span class="arrow">→</span></button>
+      </div>
+      <div class="s-card reveal">
+        <div class="s-num">07</div>
+        <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.6L18 9l-4.4 1.4L12 15l-1.6-4.6L6 9l4.4-1.4L12 3z"/><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2z"/></svg></div>
+        <h3>AI Services</h3>
+        <p>Use AI to automate, optimize and improve business workflows and digital operations.</p>
+        <button type="button" class="s-book-btn" onclick="openBookingModal('AI Services')">Book This Service <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why-us">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">The Difference</div>
+      <h2>Why Zenora Digital?</h2>
+    </div>
+    <div class="why-grid">
+      <div class="w-card reveal"><div class="w-mark"></div><h3>Modern Solutions</h3><p>We use modern digital tools and technologies.</p></div>
+      <div class="w-card reveal"><div class="w-mark"></div><h3>Creative Approach</h3><p>We combine creativity with technology.</p></div>
+      <div class="w-card reveal"><div class="w-mark"></div><h3>Business Focused</h3><p>Our solutions are designed around real business goals.</p></div>
+      <div class="w-card reveal"><div class="w-mark"></div><h3>One Digital Partner</h3><p>Multiple digital services under one roof.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Our Method</div>
+      <h2>How We Work</h2>
+    </div>
+    <div class="process-wrap">
+      <div class="process-line"></div>
+      <div class="process-grid">
+        <div class="p-step reveal"><div class="p-dot">01</div><div><h3>Understand</h3><p>We understand your business and requirements.</p></div></div>
+        <div class="p-step reveal"><div class="p-dot">02</div><div><h3>Plan</h3><p>We create the right digital strategy.</p></div></div>
+        <div class="p-step reveal"><div class="p-dot">03</div><div><h3>Build</h3><p>We design and develop your solution.</p></div></div>
+        <div class="p-step reveal"><div class="p-dot">04</div><div><h3>Grow</h3><p>We help improve, optimize and scale your digital presence.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container about-wrap">
+    <div class="about-copy reveal">
+      <div class="eyebrow">Who We Are</div>
+      <h2 style="font-size:clamp(26px,3.6vw,36px);margin-bottom:18px;">About Zenora Digital</h2>
+      <p>Zenora Digital is a digital solutions agency focused on helping businesses build a stronger online presence through technology, creativity and AI. From websites and apps to design, social media, video and automation, we bring essential digital services together under one roof.</p>
+      <div class="about-founder">Founded by <span class="name">Aadeep Chauhan</span></div>
+    </div>
+    <div class="about-panel reveal">
+      <div class="stat"><h4>7+</h4><p>Core digital services</p></div>
+      <div class="stat"><h4>1</h4><p>Accountable team</p></div>
+      <div class="stat"><h4>100%</h4><p>Business-focused delivery</p></div>
+      <div class="stat"><h4>AI</h4><p>Powered workflows</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box reveal">
+      <h2>Ready to Build Something Great?</h2>
+      <p>Let's turn your idea into a powerful digital experience.</p>
+      <button type="button" class="btn btn-primary" onclick="openBookingModal('General Inquiry')">Start Your Project</button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Get In Touch</div>
+      <h2>Let's Work Together</h2>
+      <p>Have a project, business idea or digital requirement? Get in touch with Zenora Digital.</p>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:zenoradigital6@gmail.com" class="c-card reveal">
+        <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+        <h3>Email Us</h3>
+        <div class="detail">zenoradigital6@gmail.com</div>
+      </a>
+      <a href="tel:+919196045306" class="c-card reveal">
+        <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c0 8.3 6.7 15 15 15l3-4-6-3-2 2c-2.6-1.3-4.7-3.4-6-6l2-2-3-6-3 0z"/></svg></div>
+        <h3>Call Us</h3>
+        <div class="detail">+91 9196045306</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING MODAL -->
+<div class="booking-overlay" id="bookingOverlay">
+  <div class="booking-box">
+    <button type="button" class="booking-close" id="bookingClose" aria-label="Close">&#10005;</button>
+    <h3>Book This Service</h3>
+    <p class="booking-sub">Fill your details for <span class="service-name" id="bookingServiceLabel">this service</span> and we'll get back to you shortly.</p>
+    <form id="bookingForm">
+      <input type="hidden" name="access_key" value="PASTE_YOUR_WEB3FORMS_ACCESS_KEY_HERE"/>
+      <input type="hidden" name="subject" value="New Service Booking - Zenora Digital"/>
+      <input type="checkbox" name="botcheck" class="booking-honeypot" tabindex="-1" autocomplete="off"/>
+      <div class="bfield">
+        <label for="bookName">Full Name</label>
+        <input type="text" id="bookName" name="name" required="required" placeholder="Your full name"/>
+      </div>
+      <div class="bfield">
+        <label for="bookPhone">Phone Number</label>
+        <input type="tel" id="bookPhone" name="phone" required="required" placeholder="+91 XXXXX XXXXX"/>
+      </div>
+      <div class="bfield">
+        <label for="bookEmail">Email Address</label>
+        <input type="email" id="bookEmail" name="email" required="required" placeholder="you@example.com"/>
+      </div>
+      <div class="bfield">
+        <label for="bookService">Service Needed</label>
+        <select id="bookService" name="service">
+          <option>Website Development</option>
+          <option>Graphic Design</option>
+          <option>App Development</option>
+          <option>AI Agents &amp; Automation</option>
+          <option>Social Media Handling</option>
+          <option>Video Editing</option>
+          <option>AI Services</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+      <div class="bfield">
+        <label for="bookMessage">Additional Details (optional)</label>
+        <textarea id="bookMessage" name="message" placeholder="Tell us a bit about your project..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="bookingSubmitBtn">Book Service</button>
+      <div class="booking-status" id="bookingStatus"></div>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo">
+          <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4L20 4L4 20L20 20" stroke="#04121a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          ZENORA <span style="color:var(--cyan)">DIGITAL</span>
+        </a>
+        <p>Digital. Designed to Win.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <p>Website Development • Graphic Design • App Development • AI • Social Media • Video Editing</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:zenoradigital6@gmail.com">zenoradigital6@gmail.com</a>
+        <a href="tel:+919196045306">+91 9196045306</a>
+        <p style="margin-top:10px;color:var(--text-3);">Founded by Aadeep Chauhan</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Zenora Digital. All Rights Reserved.</span>
+      <span>Designed for modern business.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* Navbar scroll state */
+  var navbar = document.getElementById('navbar');
+  function onScroll(){
+    if(window.scrollY > 30){ navbar.classList.add('scrolled'); }
+    else{ navbar.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* Mobile menu */
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var overlay = document.getElementById('menuOverlay');
+
+  function closeMenu(){
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded','false');
+    mobileMenu.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function toggleMenu(){
+    var isOpen = mobileMenu.classList.contains('open');
+    if(isOpen){ closeMenu(); }
+    else{
+      hamburger.classList.add('active');
+      hamburger.setAttribute('aria-expanded','true');
+      mobileMenu.classList.add('open');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  hamburger.addEventListener('click', toggleMenu);
+  overlay.addEventListener('click', closeMenu);
+  var menuLinks = mobileMenu.querySelectorAll('a');
+  for(var i=0;i<menuLinks.length;i++){
+    menuLinks[i].addEventListener('click', closeMenu);
+  }
+
+  /* Scroll reveal */
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* Staggered service card reveal */
+  var cards = document.querySelectorAll('#servicesGrid .s-card');
+  cards.forEach(function(card, idx){
+    card.style.transitionDelay = (idx * 70) + 'ms';
+  });
+
+  /* ===== Booking Modal ===== */
+  var bookingOverlay = document.getElementById('bookingOverlay');
+  var bookingClose = document.getElementById('bookingClose');
+  var bookingForm = document.getElementById('bookingForm');
+  var bookingService = document.getElementById('bookService');
+  var bookingServiceLabel = document.getElementById('bookingServiceLabel');
+  var bookingStatus = document.getElementById('bookingStatus');
+  var bookingSubmitBtn = document.getElementById('bookingSubmitBtn');
+
+  window.openBookingModal = function(serviceName){
+    if(serviceName){
+      bookingService.value = serviceName;
+      bookingServiceLabel.textContent = serviceName;
+    }
+    bookingOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  function closeBookingModal(){
+    bookingOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  bookingClose.addEventListener('click', closeBookingModal);
+  bookingOverlay.addEventListener('click', function(e){
+    if(e.target === bookingOverlay){ closeBookingModal(); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && bookingOverlay.classList.contains('open')){ closeBookingModal(); }
+  });
+
+  bookingForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    bookingStatus.className = 'booking-status';
+    bookingSubmitBtn.disabled = true;
+    bookingSubmitBtn.textContent = 'Sending...';
+
+    var formData = new FormData(bookingForm);
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: formData
+    })
+    .then(function(res){ return res.json(); })
+    .then(function(data){
+      if(data.success){
+        bookingStatus.textContent = "Thank you! Your request has been sent. We'll contact you shortly.";
+        bookingStatus.className = 'booking-status show ok';
+        bookingForm.reset();
+        setTimeout(closeBookingModal, 2200);
+      } else {
+        bookingStatus.textContent = 'Something went wrong. Please try again or contact us directly.';
+        bookingStatus.className = 'booking-status show err';
+      }
+    })
+    .catch(function(){
+      bookingStatus.textContent = 'Network error. Please check your connection and try again.';
+      bookingStatus.className = 'booking-status show err';
+    })
+    .finally(function(){
+      bookingSubmitBtn.disabled = false;
+      bookingSubmitBtn.textContent = 'Book Service';
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
